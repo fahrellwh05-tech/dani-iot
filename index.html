@@ -2,31 +2,77 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Dashboard Monitoring BME280</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stasiun Sensor — BME280</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 </head>
 <body>
 
-<h1>Monitoring Sensor BME280</h1>
-<div id="status">Menyambungkan ke broker...</div>
+<div class="panel">
 
-<div class="cards">
-  <div class="card">
-    <h2>Suhu</h2>
-    <div class="value" id="suhu">--</div>
-    <div class="unit">°C</div>
-  </div>
-  <div class="card">
-    <h2>Kelembapan</h2>
-    <div class="value" id="kelembapan">--</div>
-    <div class="unit">%</div>
-  </div>
-  <div class="card">
-    <h2>Tekanan</h2>
-    <div class="value" id="tekanan">--</div>
-    <div class="unit">hPa</div>
-  </div>
+  <header class="panel__header">
+    <div class="panel__title">
+      <h1>Stasiun Sensor</h1>
+      <p class="panel__subtitle">BME280 · pembacaan langsung</p>
+    </div>
+    <div class="panel__status">
+      <span class="status__dot" id="statusDot"></span>
+      <span id="statusText">menyambung…</span>
+    </div>
+  </header>
+
+  <main class="dials">
+
+    <section class="dial" data-reading="suhu">
+      <svg viewBox="0 0 200 120" class="dial__svg">
+        <path class="dial__track" d="M20,100 A80,80 0 0,1 180,100" />
+        <path class="dial__arc" id="arcSuhu" d="M20,100 A80,80 0 0,1 180,100" />
+      </svg>
+      <div class="dial__reading">
+        <span class="dial__value" id="suhu">—</span>
+        <span class="dial__unit">°C</span>
+      </div>
+      <p class="dial__label">Suhu udara</p>
+      <div class="dial__scale"><span>0</span><span>50</span></div>
+    </section>
+
+    <section class="dial" data-reading="kelembapan">
+      <svg viewBox="0 0 200 120" class="dial__svg">
+        <path class="dial__track" d="M20,100 A80,80 0 0,1 180,100" />
+        <path class="dial__arc dial__arc--blue" id="arcKelembapan" d="M20,100 A80,80 0 0,1 180,100" />
+      </svg>
+      <div class="dial__reading">
+        <span class="dial__value" id="kelembapan">—</span>
+        <span class="dial__unit">%</span>
+      </div>
+      <p class="dial__label">Kelembapan</p>
+      <div class="dial__scale"><span>0</span><span>100</span></div>
+    </section>
+
+    <section class="dial" data-reading="tekanan">
+      <svg viewBox="0 0 200 120" class="dial__svg">
+        <path class="dial__track" d="M20,100 A80,80 0 0,1 180,100" />
+        <path class="dial__arc dial__arc--green" id="arcTekanan" d="M20,100 A80,80 0 0,1 180,100" />
+      </svg>
+      <div class="dial__reading">
+        <span class="dial__value" id="tekanan">—</span>
+        <span class="dial__unit">hPa</span>
+      </div>
+      <p class="dial__label">Tekanan udara</p>
+      <div class="dial__scale"><span>950</span><span>1050</span></div>
+    </section>
+
+  </main>
+
+  <footer class="panel__footer">
+    <span>broker.hivemq.com</span>
+    <span id="lastUpdate">belum ada data</span>
+  </footer>
+
 </div>
 
 <script src="script.js"></script>
