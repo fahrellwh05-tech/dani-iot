@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard Monitoring BME280</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+
+<h1>Monitoring Sensor BME280</h1>
+<div id="status">Menyambungkan ke broker...</div>
+
+<div class="cards">
+  <div class="card">
+    <h2>Suhu</h2>
+    <div class="value" id="suhu">--</div>
+    <div class="unit">°C</div>
+  </div>
+  <div class="card">
+    <h2>Kelembapan</h2>
+    <div class="value" id="kelembapan">--</div>
+    <div class="unit">%</div>
+  </div>
+  <div class="card">
+    <h2>Tekanan</h2>
+    <div class="value" id="tekanan">--</div>
+    <div class="unit">hPa</div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
